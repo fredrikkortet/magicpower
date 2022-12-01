@@ -1,0 +1,8 @@
+#! /bin/bash
+
+case "$(cat /sys/class/net/w*/operstate 2>/dev/null)" in
+    down) wifiicon="OFF" ;;
+    up)   wifiicon="WIFI";;
+esac
+
+printf "NET \x0c%s%s%s\x0b\n" "$wifiicon" " $(sed "s/down/OFF/;s/up/ON/" /sys/class/net/e*/operstate 2>/dev/null)" "$(sed "s/.*/VPN/" /sys/class/net/tun*/operstate 2>/dev/null)"

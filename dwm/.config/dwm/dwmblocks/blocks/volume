@@ -1,0 +1,7 @@
+#!/bin/bash
+
+[ $(pamixer --get-mute) = true ] && echo MUTE && exit
+
+vol="$(pamixer --get-volume)"
+
+printf "VOL \x0d$vol%%\x0b"

@@ -1,0 +1,32 @@
+#! /bin/sh
+menu="rofi -dmenu -no-fixed-num-lines -yoffset -100 -i -p"
+power_off="power off"
+lock="lock"
+re_boot="reboot"
+suspend_lock="suspend"
+lockscreen2="betterlockscreen -l --blur 0.8"
+# Without betterlockscreen
+lockscreen="i3lock -i $HOME/.lockscreen/lockscreen.png"
+show_menu(){
+option="$suspend_lock\n$power_off\n$re_boot\n$lock"
+run="$(echo $option | $menu "Power menu")"
+case $run in
+    "")
+        echo "nothing chosen"
+        ;;
+    $suspend_lock)
+        $lockscreen2 &
+        loginctl suspend
+        ;;
+    $power_off)
+        loginctl poweroff
+        ;;
+    $lock)
+        $lockscreen2
+        ;;
+    $re_boot)
+        loginctl reboot
+        ;;
+esac
+}
+show_menu

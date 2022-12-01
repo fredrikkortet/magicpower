@@ -1,0 +1,45 @@
+!fonts
+!*font:xft:Monaco:Bold:size=8.5,xft:Symbola:style=regular:size=10
+!*boldFont:xft:Monaco:Bold:size=8.5,xft:Symbola:style=regular:size=10
+
+!appearence
+*foreground:        #fdf6e3
+*background:        #073642
+*.foreground:       #fdf6e3
+*.background:       #073642
+*.cursorColor:      #dc322f
+*fading: 35
+
+! colors
+*.color0: #073642
+*color0:  #073642
+*.color1: #dc322f
+*color1:  #dc322f
+*.color2: #859900
+*color2:  #859900
+*.color3: #b58900
+*color3:  #b58900
+*.color4: #268bd2
+*color4:  #268bd2
+*.color5: #d33682
+*color5:  #d33682
+*.color6: #2aa198
+*color6:  #2aa198
+*.color7: #eee8d5
+*color7:  #eee8d5
+*.color8: #6c7c80
+*color8:  #6c7c80
+*.color9: #dc322f
+*color9:  #dc322f
+*.color10: #859900
+*color10:  #859900
+*.color11: #b58900
+*color11:  #b58900
+*.color12: #268bd2
+*color12:  #268bd2
+*.color13: #d33682
+*color13:  #d33682
+*.color14: #2aa198
+*color14:  #2aa198
+*.color15: #eee8d5
+*color15:  #eee8d5

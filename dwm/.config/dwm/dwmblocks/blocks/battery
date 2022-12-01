@@ -1,0 +1,12 @@
+#! /bin/bash
+if [ "$HOSTNAME" != "desktop" ]
+then
+    read -r ac </sys/class/power_supply/ACAD/online
+    read -r capacity </sys/class/power_supply/BAT1/capacity
+if [ "$ac" = "0" ]
+then
+    printf "BAT \x0f%s%%\x0b" "$capacity"
+else
+    printf "BAT \x0dAC %s%%\x0b" "$capacity"
+fi
+fi

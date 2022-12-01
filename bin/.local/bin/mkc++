@@ -1,0 +1,11 @@
+#! /bin/sh
+
+if $1; then
+    echo "no name mkc++ arg1"
+else 
+    mkdir ./$1
+    cd $1
+    mkdir src bin lib 
+    touch ./src/main.cpp
+    cp /home/tipparn/Documents/programming/makefiles/c++.txt ./Makefile
+fi

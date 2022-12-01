@@ -1,0 +1,216 @@
+#! /bin/bash
+
+menu="rofi -show run"
+back="Back"
+power_on(){
+    if bluetoothctl show | grep -q "Powered: no"; then
+        return 0
+    else
+        return 1
+    fi
+}
+
+power_toggle(){
+    if power_on; then
+        if rfkill list bluetooth | grep -q 'blocked: yes'; then
+            rfkill unblock bluetooth && sleep 3
+        fi
+        bluetoothctl power on
+        show_menu
+    else
+        bluetoothctl power off
+        show_menu
+    fi
+}
+scan_on() {
+    if bluetoothctl show | grep -q "Discovering: no"; then
+        echo "Scan: off"
+        return 0
+    else
+        echo "Scan: on"
+        return 1
+    fi
+}
+scan_toggle(){
+    if scan_on; then
+        bluetoothctl scan on &
+        echo "Scanning..."
+        sleep 5
+        show_menu
+    else
+        kill $(pgrep -f "bluetoothctl scan on")
+        bluetoothctl scan off
+        show_menu
+    fi
+}
+pairable_on(){
+    if bluetoothctl show | grep -q "Pairable: no"; then
+        echo "Pairable: off"
+        return 0
+    else
+        echo "Pairable: on"
+        return 1
+    fi
+}
+pairable_toggle(){
+    if pairable_on; then
+        bluetoothctl pairable on
+        show_menu
+    else
+        bluetoothctl pairable off
+        show_menu
+    fi
+}
+discoverable_on(){
+    if bluetoothctl show | grep -q "Discoverable: no"; then
+        echo "Discoverable: off"
+        return 0
+    else
+        echo "Discoverable: on"
+        return 1
+    fi
+}
+discoverable_toggle(){
+    if discoverable_on; then
+        bluetoothctl discoverable on
+        show_menu
+    else
+        bluetoothctl discoverable off
+        show_menu
+    fi
+}
+connected_device() {
+    dev_info=$(bluetoothctl info "$1")
+    if echo "$dev_info" | grep -q "Connected: no"; then
+        return 0
+    else
+        return 1
+    fi
+}
+connection_toggle() {
+    if connected_device $1; then
+        bluetoothctl connect $1
+        device_menu "$device"
+    else
+        bluetoothctl disconnect $1
+        device_menu "$device"
+    fi
+}
+paired_device() {
+    dev_info=$(bluetoothctl info "$1")
+    if echo "$dev_info" | grep -q "Paired: no"; then
+        echo "Paired: no"
+        return 0
+    else
+        echo "Paired: yes"
+        return 1
+    fi
+}
+paired_toggle() {
+    if paired_device $1; then
+        bluetoothctl pair $1
+        device_menu "$device"
+    else
+        bluetoothctl remove $1
+        device_menu "$device"
+    fi
+}
+trusted_device() {
+    dev_info=$(bluetoothctl info "$1")
+    if echo "$dev_info" | grep -q "Trusted: no"; then
+        echo "Trusted: no"
+        return 0
+    else
+        echo "Trusted: yes"
+        return 1
+    fi
+}
+trust_toggle() {
+    if trusted_device $1; then
+        bluetoothctl trust $1
+        device_menu "$device"
+    else
+        bluetoothctl untrust $1
+        device_menu "$device"
+    fi
+}
+device_menu() {
+    device=$1
+
+    name=$(echo $device | cut -d ' ' -f 3-)
+    mac=$(echo $device | cut -d ' ' -f 2)
+
+    if connected_device $mac; then
+        connected="Connected: no"
+    else
+        connected="Connected: yes"
+    fi
+    paired=$(paired_device $mac)
+    trusted=$(trusted_device $mac)
+    option="$connected\n$paired\n$trusted\n$back\nExit"
+    
+    run="$(echo -e "$option" | $menu "$name")"
+    case $run in
+        "")
+            echo "No option choosen."
+            ;;
+        $connected)
+            connection_toggle $mac
+            ;;
+        $paired)
+            paired_toggle $mac
+            ;;
+        $trusted)
+            trust_toggle $mac
+            ;;
+        $back)
+            show_menu
+            ;;
+    esac
+}
+show_menu(){
+    if power_on; then
+        power="Power: off"
+        option="$power\nExit"
+    else
+        power="Power: on"
+
+        devices=$(bluetoothctl devices | grep Device | cut -d ' ' -f 3-)
+
+        scan=$(scan_on)
+        pairable=$(pairable_on)
+        discoverable=$(discoverable_on)
+
+        option="$devices\n$scan\n$pairable\n$discoverable\nExit"
+    fi
+
+    run="$(echo -e "$option" | $menu "Bluetooth")"
+
+    case $run in
+        "")
+            echo "No option choosen."
+            ;;
+        $power)
+            power_toggle
+            ;;
+        $scan)
+            scan_toggle
+            ;;
+        $pairable)
+            pairable_toggle
+            ;;
+        $discoverable)
+            discoverable_toggle
+            ;;
+        *)
+            device=$(bluetoothctl devices | grep "$run")
+            if [[ $device ]]; then
+                device_menu "$device"
+            fi
+            ;;
+    esac
+}
+
+
+show_menu
+
