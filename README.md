@@ -1,4 +1,4 @@
-# MagikPower
+# MagicPower
 ## This is my dotfiles
 
 
