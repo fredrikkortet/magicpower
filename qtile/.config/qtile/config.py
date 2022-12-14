@@ -92,15 +92,15 @@ keys = [
     
     ## Special keys
     Key([], "XF86Calculator",lazy.spawn(""), desc="Calculator"),
-    Key([], "XF86AudioRaiseVolume",lazy.spawn("amixer -q sset Master 3%+"), desc="Volume up"),
-    Key([], "XF86AudioLowerVolume",lazy.spawn("amixer -q sset Master 3%-"), desc="Volume down"),
-    Key([], "XF86AudioMute",lazy.spawn("amixer -q sset Master toggle"), desc="Volume mute"),
+    Key([], "XF86AudioRaiseVolume",lazy.spawn("/home/tipparn/.local/bin/changevol 3%+"), desc="Volume up"),
+    Key([], "XF86AudioLowerVolume",lazy.spawn("/home/tipparn/.local/bin/changevol 3%-"), desc="Volume down"),
+    Key([], "XF86AudioMute",lazy.spawn("/home/tipparn/.local/bin/changevol toggle"), desc="Volume mute"),
     Key([], "XF86AudioPlay",lazy.spawn(""), desc="Play audio"),
     Key([], "XF86AudioPrev",lazy.spawn(""), desc="Previous audio"),
     Key([], "XF86AudioNext",lazy.spawn(""), desc="Next audio"),
     Key([], "XF86MonBrightnessUp",lazy.spawn("brightnessctl s +5%"), desc="Brightness Up"),
     Key([], "XF86MonBrightnessDown",lazy.spawn("brightnessctl s 5%-"), desc="Brightness down"),
-    Key([], "print",lazy.spawn("scrot -s $HOME/pictures/$TIME-screenshot.png"), desc="Screenshot select"),
+    Key([], "print",lazy.spawn("scrot -s /home/tipparn/pictures/$TIME-screenshot.png"), desc="Screenshot select"),
 ]
 
 groups = [
@@ -229,7 +229,6 @@ screens = [
                 widget.Net(
                     format = "{down} ↓↑ {up}",
                     **widget_defaults,
-
                     ),
                 separator,
                 widget.TextBox(
@@ -250,7 +249,6 @@ screens = [
                     ),
                 widget.Battery(
                     format = "{char}{percent:2.0%}",
-                    notify_below = 15,
                     **widget_defaults,
 
                     ),
