@@ -1,6 +1,4 @@
--- Lualine configuration
-
-local non_language_ft = {'fugitive', 'startify'}
+local non_language_ft = {'fugitive'}
 
 require('lualine').setup({
   options = {
@@ -48,14 +46,13 @@ require('lualine').setup({
       {
         'diagnostics',
         sources = {'nvim_diagnostic'},
-        sections = {'error', 'warn', 'info'},
+        sections = {'E', 'W', 'I'},
       },
     },
     lualine_x = {'encoding'},
     lualine_y = {{function () return os.date("%H:%M") end}},
     lualine_z = {
-      {function () return '' end},
-      {'progress'}, 
+      {'progress'},
       {'location'},
     }
   },
