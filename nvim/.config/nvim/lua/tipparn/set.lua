@@ -23,7 +23,7 @@ o.incsearch = true
 o.termguicolors = true
 
 o.scrolloff = 8
-o.signcolumn = "yes"
+o.signcolumn = "auto:2"
 o.isfname:append("@-@")
 
 o.updatetime = 50
