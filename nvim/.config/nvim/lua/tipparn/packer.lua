@@ -28,6 +28,9 @@ return require('packer').startup(function(use)
     -- Undo
 	use('mbbill/undotree')
 
+    -- Color highlight
+    use('norcalli/nvim-colorizer.lua')
+
     -- Git
 	use('tpope/vim-fugitive')
     use('lewis6991/gitsigns.nvim')
