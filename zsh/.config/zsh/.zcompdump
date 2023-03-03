@@ -334,6 +334,8 @@ _comps=(
 'dmesg' '_dmesg'
 'dmidecode' '_dmidecode'
 'doas' '_doas'
+'docker' '_docker'
+'dockerd' '_docker'
 'domainname' '_yp'
 'dos2unix' '_dos2unix'
 'drill' '_drill'
@@ -896,7 +898,6 @@ _comps=(
 'nginx' '_nginx'
 'ngrep' '_ngrep'
 'nice' '_nice'
-'nix' '_nix'
 'nkf' '_nkf'
 'nl' '_nl'
 'nm' '_nm'
@@ -1659,7 +1660,7 @@ bindkey '^[/' _history-complete-older
 bindkey '^[~' _bash_complete-word
 
 autoload -Uz _zap _alacritty _bluetoothctl _bwrap _curl \
-            _libinput _loginctl _mpv _nix _pulseaudio \
+            _docker _libinput _loginctl _mpv _pulseaudio \
             _rg _starship _sv _xbps _xbps_src \
             _xtools _zathura _cdr _all_labels _all_matches \
             _alternative _approximate _arg_compile _arguments _bash_completions \

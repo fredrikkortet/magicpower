@@ -205,12 +205,6 @@ screens = [
                 separator, 
                 widget.WindowName(),
                 widget.Spacer(),
-                widget.TextBox(
-                    text = " ",
-                    font = "Font Awesome 6 Free Solid, Solid",
-                    foreground = colors[4],
-                    fontsize = 18,
-                    ),
                 widget.DF(
                     **widget_defaults,
                     ),
@@ -221,10 +215,10 @@ screens = [
                     ),
                 separator,
                 widget.TextBox(
-                    text = " ",
+                    text = "WIFI: ",
                     font = "Font Awesome 6 Free Solid, Solid",
                     foreground = colors[4],
-                    fontsize = 18,
+                    fontsize = 14,
                     ),
                 widget.Net(
                     format = "{down} ↓↑ {up}",
@@ -232,20 +226,20 @@ screens = [
                     ),
                 separator,
                 widget.TextBox(
-                    text = " ",
+                        text = "VOL: ",
                     font = "Font Awesome 6 Free Solid, Solid",
                     foreground = colors[4],
-                    fontsize = 18,
+                    fontsize = 14,
                     ),
                 widget.Volume(
                     **widget_defaults,
                     ),
                 separator,
                 widget.TextBox(
-                    text = "  ",
+                        text = "BAT: ",
                     font = "Font Awesome 6 Free Solid, Solid",
                     foreground = colors[4],
-                    fontsize = 18,
+                    fontsize = 14,
                     ),
                 widget.Battery(
                     format = "{char}{percent:2.0%}",
@@ -257,7 +251,7 @@ screens = [
                     text = "MEM: ",
                     font = "Font Awesome 6 Free Solid, Solid",
                     foreground = colors[4],
-                    fontsize = 18,
+                    fontsize = 14,
                     ),
                 widget.Memory(
                     format = "{MemUsed:.1f}{mm}", 

@@ -15,6 +15,6 @@ xset r rate 300 50 &
 picom --xrender-sync-fence &
 /usr/bin/lxpolkit &
 unclutter &
-wal --theme solarized &
+wal --theme tokyomoon &
 pipewire &
 pipewire-pulse &
