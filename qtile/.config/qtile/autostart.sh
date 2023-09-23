@@ -16,5 +16,5 @@ picom --xrender-sync-fence &
 /usr/bin/lxpolkit &
 unclutter &
 wal --theme tokyomoon &
-pipewire &
+#pipewire &
 pipewire-pulse &

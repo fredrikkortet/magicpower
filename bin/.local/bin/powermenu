@@ -9,23 +9,32 @@ lockscreen2="betterlockscreen -l --blur 0.8"
 lockscreen="i3lock -i $HOME/.lockscreen/lockscreen.png"
 show_menu(){
 option="$suspend_lock\n$power_off\n$re_boot\n$lock"
-run="$(echo $option | $menu "Power menu")"
+run="$(echo -e $option | $menu "Power menu")"
 case $run in
     "")
         echo "nothing chosen"
         ;;
     $suspend_lock)
         $lockscreen2 &
-        loginctl suspend
+        # void linux
+        #loginctl suspend
+        # systemd 
+        systemctl suspend
         ;;
     $power_off)
-        loginctl poweroff
+        # void linux
+        #loginctl poweroff
+        # systemd
+        systemctl poweroff
         ;;
     $lock)
         $lockscreen2
         ;;
     $re_boot)
-        loginctl reboot
+        # void linux
+        #loginctl reboot
+        # systemd
+        systemctl reboot
         ;;
 esac
 }

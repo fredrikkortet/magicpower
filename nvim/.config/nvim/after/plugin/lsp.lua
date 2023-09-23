@@ -4,7 +4,6 @@ lsp.preset('recommended')
 lsp.ensure_installed({
     'pyright',
     'clangd',
-    'sumneko_lua',
     'rust_analyzer',
     'ltex',
     'eslint',

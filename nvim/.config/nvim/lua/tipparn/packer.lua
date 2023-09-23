@@ -17,9 +17,9 @@ return require('packer').startup(function(use)
     -- Theme
 	use({ 
 		'folke/tokyonight.nvim',
-		config = function()
-			vim.cmd('colorscheme tokyonight-moon')
-		end
+        --config = function()
+		--	vim.cmd('colorscheme tokyonight-moon')
+		--end
 	})
 
     -- Treesitter highlight

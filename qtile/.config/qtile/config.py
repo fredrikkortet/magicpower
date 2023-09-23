@@ -216,18 +216,17 @@ screens = [
                 separator,
                 widget.TextBox(
                     text = "WIFI: ",
-                    font = "Font Awesome 6 Free Solid, Solid",
                     foreground = colors[4],
                     fontsize = 14,
                     ),
-                widget.Net(
-                    format = "{down} ↓↑ {up}",
+                widget.Wlan(
+                    interface = "wlp1s0",
+                    format = "{essid}",
                     **widget_defaults,
                     ),
                 separator,
                 widget.TextBox(
                         text = "VOL: ",
-                    font = "Font Awesome 6 Free Solid, Solid",
                     foreground = colors[4],
                     fontsize = 14,
                     ),
@@ -237,7 +236,6 @@ screens = [
                 separator,
                 widget.TextBox(
                         text = "BAT: ",
-                    font = "Font Awesome 6 Free Solid, Solid",
                     foreground = colors[4],
                     fontsize = 14,
                     ),
@@ -249,7 +247,6 @@ screens = [
                 separator,
                 widget.TextBox(
                     text = "MEM: ",
-                    font = "Font Awesome 6 Free Solid, Solid",
                     foreground = colors[4],
                     fontsize = 14,
                     ),
