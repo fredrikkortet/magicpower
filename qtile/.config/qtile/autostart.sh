@@ -13,6 +13,8 @@ $HOME/.dwm/dwmblocks/dwmblocks &
 numlockx on
 xset r rate 300 50 &
 picom --xrender-sync-fence &
+setxkbmap-  option ctrl:nocaps &
+xmodmap -e "keycode 66 = Escape" &
 /usr/bin/lxpolkit &
 unclutter &
 wal --theme tokyomoon &
