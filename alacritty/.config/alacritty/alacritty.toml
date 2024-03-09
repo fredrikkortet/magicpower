@@ -1,0 +1,24 @@
+[cursor]
+style = "Block"
+
+[env]
+BROWSER = "firefox"
+TERM = "alacritty"
+
+[font]
+size = 8.0
+
+[font.bold]
+family = "DejaVuSansMono"
+style = "Bold"
+
+[font.normal]
+family = "DejaVuSansMono"
+style = "Regular"
+
+[scrolling]
+history = 10000
+
+[window]
+opacity = 0.9
+startup_mode = "Windowed"

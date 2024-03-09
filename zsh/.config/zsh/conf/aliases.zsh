@@ -10,6 +10,7 @@ alias fgrep='fgrep --color=auto'
 alias cp="cp -i"
 alias mv='mv -i'
 alias rm='rm -i'
+alias todo='nvim $HOME/documents/caveinfo/pages/TODO.md'
 
 alias df='df -h'     # human-readable sizes
 alias free='free -mt' # show sizes in MB
