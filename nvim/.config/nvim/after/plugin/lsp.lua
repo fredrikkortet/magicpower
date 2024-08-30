@@ -1,12 +1,18 @@
 local lsp = require('lsp-zero')
 
 lsp.preset('recommended')
-lsp.ensure_installed({
-    'pyright',
-    'clangd',
-    'rust_analyzer',
-    'ltex',
-    'eslint',
+require('mason').setup({})
+require('mason-lspconfig').setup({
+    ensure_installed = {
+        'pyright',
+        'clangd',
+        'rust_analyzer',
+        'ltex',
+        'eslint',
+    },
+    handlers = {
+        lsp.default_setup,
+    },
 })
 
 local cmp = require('cmp')
@@ -27,7 +33,11 @@ lsp.set_preferences({
     }
 })
 
-lsp.setup_nvim_cmp({
+cmp.setup({
+    window = {
+        completion = cmp.config.window.bordered(),
+        documentation = cmp.config.window.bordered(),
+    },
     mapping = cmp_mappings,
     preselect = 'none',
     completion = {
