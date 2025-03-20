@@ -1,6 +1,5 @@
 local lsp = require('lsp-zero')
 
-lsp.preset('recommended')
 require('mason').setup({})
 require('mason-lspconfig').setup({
     ensure_installed = {
@@ -16,21 +15,12 @@ require('mason-lspconfig').setup({
 })
 
 local cmp = require('cmp')
-local cmp_mappings = lsp.defaults.cmp_mappings({
+local cmp_mappings = cmp.mapping.preset.insert({
     ['<C-d>'] = cmp.mapping.scroll_docs(-4),
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
     ['<C-Space>'] = cmp.mapping.complete(),
     ['<C-e>'] = cmp.mapping.close(),
     ['<C-y>'] = cmp.mapping.confirm({ select = true }),
-})
-
-lsp.set_preferences({
-    sign_icons = {
-        error = 'E',
-        warn = 'W',
-        hint = 'H',
-        info = 'I'
-    }
 })
 
 cmp.setup({
